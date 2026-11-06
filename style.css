@@ -221,6 +221,7 @@ section { padding: 96px 0; }
 .voet nav a { text-decoration: none; }
 .voet nav a:hover { text-decoration: underline; }
 .voet p { max-width: 640px; }
+.voet .voet-privacy { margin: 6px 0 0; font-size: 14px; opacity: .85; }
 
 /* Verschijnen bij scrollen (alleen als JS het aanzet) */
 .js .opkomen { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }

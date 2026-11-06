@@ -3,122 +3,92 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bezoekers — HomeCraft</title>
 <meta name="robots" content="noindex, nofollow">
-<title>HomeCraft · bezoekers</title>
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d141c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
 <style>
-:root { --bg:#f6f4ef; --kaart:#fff; --tekst:#1b2430; --zacht:#6b7280; --rand:#e5e1d8; --accent:#c2690f; --accent2:#2f5d8a; color-scheme: light dark; }
-@media (prefers-color-scheme: dark) { :root { --bg:#12171e; --kaart:#1b222c; --tekst:#e8ebef; --zacht:#9aa3ae; --rand:#2a3340; --accent:#f0a14a; --accent2:#7fb0e0; } }
-* { box-sizing: border-box; }
-body { margin:0; background:var(--bg); color:var(--tekst); font:15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
-main { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
-h1 { font-size: 22px; margin: 0 0 4px; }
-h2 { font-size: 13px; margin: 0 0 12px; color: var(--zacht); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
-.sub { color: var(--zacht); margin: 0 0 20px; font-size: 13px; }
-.rij { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-bottom: 4px; }
-.kaart { background:var(--kaart); border:1px solid var(--rand); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
-.getal { font-size: 30px; font-weight: 700; line-height: 1.1; }
-.label { color: var(--zacht); font-size: 13px; }
-.balk { display:flex; align-items:center; gap:10px; margin: 6px 0; font-size: 14px; }
-.balk span:first-child { width: 80px; color: var(--zacht); flex: none; }
-.balk i { display:block; height: 10px; border-radius: 5px; background: var(--accent); min-width: 2px; }
-.balk b { font-weight: 600; min-width: 28px; }
-svg { width: 100%; height: auto; display:block; color: var(--tekst); }
-.leg { display:flex; gap:16px; font-size:13px; color:var(--zacht); margin-top:8px; flex-wrap: wrap; }
-.leg span::before { content:""; display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:6px; vertical-align:-1px; background: var(--c); }
-button { font: inherit; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--rand); background: var(--kaart); color: var(--tekst); cursor: pointer; }
-.twee { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-@media (max-width: 640px) { .twee { grid-template-columns: 1fr; } }
+  /* Statistiekpagina: alleen voor de eigenaar, nergens gelinkt en niet in de sitemap. */
+  .st { padding: 28px 0 64px; }
+  .st h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 750; }
+  .st h2 { font-size: 20px; font-weight: 680; margin-bottom: 4px; }
+  .st-sub { color: var(--zacht); margin: 8px 0 0; }
+  .st-balk { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 18px 0 28px; color: var(--zacht); font-size: 14px; }
+  .st-balk button, .st-uit button { appearance: none; font: 600 14px/1 var(--font); min-height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--lijn); background: var(--vlak); color: var(--tekst); cursor: pointer; }
+  .st-balk button:hover, .st-uit button:hover { border-color: var(--zacht); }
+  .st-test { background: color-mix(in srgb, var(--oranje) 14%, var(--vlak)); border: 1px solid color-mix(in srgb, var(--oranje) 45%, transparent); color: var(--accent-tekst); border-radius: 12px; padding: 10px 14px; font-size: 14px; margin-top: 16px; }
+  .st section, .st-sectie { padding: 0; }
+  .st-sectie { margin-top: 36px; }
+  .st-kop { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin-bottom: 14px; }
+  .st-kop small { color: var(--zacht); font-size: 14px; }
+  .tegels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (min-width: 760px) { .tegels { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  .tegel { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 16px; padding: 14px 16px; }
+  .tegel .w { font-size: clamp(26px, 4vw, 34px); font-weight: 720; letter-spacing: -.02em; line-height: 1.15; font-variant-numeric: tabular-nums; }
+  .tegel .n { color: var(--zacht); font-size: 14px; margin-top: 2px; }
+  .kaartje { background: var(--vlak); border: 1px solid var(--lijn); border-radius: 18px; padding: 16px 16px 12px; }
+  .grafiek { position: relative; }
+  .grafiek svg { display: block; width: 100%; height: 220px; overflow: visible; }
+  .grafiek .as { fill: var(--zacht); font: 12px/1 var(--font); font-variant-numeric: tabular-nums; }
+  .grafiek .rooster { stroke: var(--lijn); stroke-width: 1; }
+  .grafiek .basis { stroke: var(--zacht); stroke-width: 1; opacity: .5; }
+  .grafiek .staaf { fill: var(--oranje-groot); }
+  .grafiek .vang { fill: transparent; cursor: default; outline: none; }
+  .grafiek .vang:focus-visible + .staaf, .grafiek .actief { fill: var(--accent-tekst); }
+  .tip { position: absolute; pointer-events: none; background: var(--tekst); color: var(--bg); border-radius: 10px; padding: 8px 10px; font-size: 13px; line-height: 1.4; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); box-shadow: var(--schaduw); z-index: 2; }
+  .tip[hidden] { display: none; }
+  .tip b { font-variant-numeric: tabular-nums; }
+  details.tabel { margin-top: 8px; font-size: 14px; }
+  details.tabel summary { cursor: pointer; color: var(--zacht); padding: 6px 0; }
+  details.tabel table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  details.tabel th, details.tabel td { text-align: left; padding: 4px 8px 4px 0; border-bottom: 1px solid var(--lijn); }
+  details.tabel td + td, details.tabel th + th { text-align: right; }
+  .verdeling { display: grid; gap: 12px; }
+  @media (min-width: 760px) { .verdeling { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .lijst { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 8px; }
+  .lijst li { display: grid; grid-template-columns: 7.5em 1fr auto; align-items: center; gap: 10px; font-size: 14px; }
+  .lijst .b { height: 10px; border-radius: 0 4px 4px 0; background: var(--oranje-groot); }
+  .lijst .s { background: var(--bg-2); border-radius: 0 4px 4px 0; }
+  .lijst .g { font-variant-numeric: tabular-nums; color: var(--tekst); text-align: right; min-width: 6.5em; }
+  .lijst .g span { color: var(--zacht); }
+  .leeg { color: var(--zacht); font-size: 14px; margin: 8px 0 0; }
+  .st-uit { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .st-uit p { margin: 0; color: var(--zacht); font-size: 14px; }
+  .st-noot { color: var(--zacht); font-size: 13px; margin-top: 28px; max-width: 760px; }
 </style>
 </head>
 <body>
-<main>
-  <h1>Bezoekers</h1>
-  <p class="sub" id="stand">Laden…</p>
-  <div class="rij" id="totalen"></div>
-  <div class="kaart"><h2>Laatste 14 dagen · homecraft.studio</h2><div id="grafiek"></div>
-    <div class="leg"><span style="--c:var(--accent)">bezoeken</span><span style="--c:var(--accent2)">unieke bezoekers</span></div></div>
-  <div class="kaart"><h2>Laatste 14 dagen · beta</h2><div id="grafiek-beta"></div></div>
-  <div class="twee">
-    <div class="kaart"><h2>Bron</h2><div id="bron"></div></div>
-    <div class="kaart"><h2>Taal</h2><div id="taal"></div></div>
+<main class="st">
+  <div class="wrap">
+    <h1>Bezoekers</h1>
+    <p class="st-sub">Anonieme telling van homecraft.studio en beta.homecraft.studio. Geen cookies, geen persoonsgegevens.</p>
+    <div class="st-test" id="testmelding" hidden></div>
+    <div class="st-balk">
+      <button type="button" id="vernieuw">Vernieuwen</button>
+      <span id="status" role="status" aria-live="polite">Laden…</span>
+    </div>
+
+    <div id="inhoud"></div>
+
+    <section class="st-sectie" aria-labelledby="h-beta">
+      <div class="st-kop"><h2 id="h-beta">Beta</h2><small>sinds het begin van de telling</small></div>
+      <div class="tegels">
+        <div class="tegel"><div class="w" id="beta-code">–</div><div class="n">keer een geldige testcode gebruikt</div></div>
+        <div class="tegel"><div class="w" id="beta-gids">–</div><div class="n">keer de installatiegids getoond</div></div>
+      </div>
+    </section>
+
+    <div class="st-uit">
+      <button type="button" id="notrack">Dit apparaat niet meetellen</button>
+      <p id="notrack-staat"></p>
+    </div>
+
+    <p class="st-noot">Unieke bezoekers zijn browsers die voor het eerst langskomen; een vlag in de browser zelf onthoudt dat. Bezoekers met Do Not Track of Global Privacy Control worden niet geteld, net als apparaten waarop je ‘niet meetellen’ hebt gekozen (of <code>?notrack=1</code> hebt geopend). Die keuze geldt per site: open voor de beta één keer <a href="https://beta.homecraft.studio/?notrack=1">beta.homecraft.studio/?notrack=1</a> op hetzelfde apparaat. Datums zijn in UTC. De teller (Abacus) ruimt een sleutel op als die ongeveer een half jaar geen nieuwe telling krijgt.</p>
   </div>
-  <div class="kaart"><h2>Dit apparaat</h2><p class="label" id="uitstand"></p><button id="uit" type="button">Dit apparaat niet meetellen</button></div>
-  <p class="sub">Anonieme telling zonder cookies of persoonsgegevens. Aantallen zijn indicatief.</p>
 </main>
-<script>
-(function () {
-  var NS = 'hcs-k7q2m9', API = 'https://abacus.jasoncameron.dev/get/' + NS + '/';
-  function wacht(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
-  function haal(k, poging) {
-    poging = poging || 0;
-    return fetch(API + k, { cache: 'no-store' }).then(function (r) {
-      if (r.status === 429 && poging < 4) return wacht(3000).then(function () { return haal(k, poging + 1); });
-      return r.ok ? r.json().then(function (j) { return j.value || 0; }) : 0;
-    }, function () { return 0; });
-  }
-  // De dienst staat 30 opvragingen per 10 s toe: rustig na elkaar, en tussendoor tekenen.
-  function veel(keys, klaar) {
-    var uit = {}, i = 0;
-    function volgende() {
-      if (i >= keys.length) return Promise.resolve(uit);
-      var k = keys[i++];
-      return haal(k).then(function (v) { uit[k] = v; if (i % 6 === 0) klaar(uit, false); return wacht(380); }).then(volgende);
-    }
-    return volgende().then(function () { klaar(uit, true); return uit; });
-  }
-  var DAGEN = 14, dagen = [];
-  for (var d = DAGEN - 1; d >= 0; d--) dagen.push(new Date(Date.now() - d * 864e5).toISOString().slice(0, 10));
-  var talen = ['en', 'nl', 'de', 'fr', 'es', 'zh', 'hi'];
-  var bronnen = ['facebook', 'google', 'github', 'direct', 'overig'];
-  var keys = ['www-hits', 'www-uniek', 'beta-hits', 'beta-uniek', 'beta-code', 'beta-gids'];
-  dagen.slice().reverse().forEach(function (x) { keys.push('www-d-' + x, 'www-ud-' + x, 'beta-d-' + x); });
-  bronnen.forEach(function (b) { keys.push('www-s-' + b); });
-  talen.forEach(function (t) { keys.push('www-l-' + t); });
-  bronnen.forEach(function (b) { keys.push('beta-s-' + b); });
-  talen.forEach(function (t) { keys.push('beta-l-' + t); });
-  function kaart(getal, label) { return '<div class="kaart"><div class="getal">' + getal.toLocaleString('nl-NL') + '</div><div class="label">' + label + '</div></div>'; }
-  function balken(el, rijen) {
-    var max = Math.max(1, Math.max.apply(null, rijen.map(function (r) { return r[1]; })));
-    el.innerHTML = rijen.map(function (r) { return '<div class="balk"><span>' + r[0] + '</span><i style="width:' + Math.round(r[1] / max * 60) + '%"></i><b>' + r[1] + '</b></div>'; }).join('');
-  }
-  function grafiek(el, a, b) {
-    var W = 860, H = 200, P = 26, max = Math.max(1, Math.max.apply(null, a)), bw = (W - P) / a.length;
-    var s = '<svg viewBox="0 0 ' + W + ' ' + (H + 22) + '" role="img" aria-label="Bezoeken per dag">';
-    s += '<text x="0" y="12" font-size="11" fill="currentColor" opacity=".6">' + max + '</text>';
-    a.forEach(function (v, i) {
-      var h = v / max * (H - 20), x = P + i * bw;
-      s += '<rect x="' + (x + 2) + '" y="' + (H - h) + '" width="' + Math.max(2, bw * (b ? .45 : .8) - 2) + '" height="' + h + '" rx="2" fill="var(--accent)"><title>' + dagen[i] + ': ' + v + '</title></rect>';
-      if (b) { var h2 = b[i] / max * (H - 20); s += '<rect x="' + (x + 2 + bw * .45) + '" y="' + (H - h2) + '" width="' + Math.max(2, bw * .45 - 2) + '" height="' + h2 + '" rx="2" fill="var(--accent2)"><title>' + dagen[i] + ': ' + b[i] + ' uniek</title></rect>'; }
-      if (i % 2 === 1 || i === a.length - 1) s += '<text x="' + (x + bw / 2) + '" y="' + (H + 16) + '" font-size="11" text-anchor="middle" fill="currentColor" opacity=".6">' + dagen[i].slice(8) + '-' + dagen[i].slice(5, 7) + '</text>';
-    });
-    el.innerHTML = s + '</svg>';
-  }
-  function n(v, k) { return v[k] || 0; }
-  veel(keys, function (v, klaar) {
-    document.getElementById('totalen').innerHTML =
-      kaart(n(v, 'www-hits'), 'bezoeken site') + kaart(n(v, 'www-uniek'), 'unieke bezoekers site') +
-      kaart(n(v, 'beta-hits'), 'bezoeken beta') + kaart(n(v, 'beta-uniek'), 'unieke bezoekers beta') +
-      kaart(n(v, 'beta-code'), 'uitnodigingslink gebruikt') + kaart(n(v, 'beta-gids'), 'installatiegids geopend');
-    grafiek(document.getElementById('grafiek'), dagen.map(function (x) { return n(v, 'www-d-' + x); }), dagen.map(function (x) { return n(v, 'www-ud-' + x); }));
-    grafiek(document.getElementById('grafiek-beta'), dagen.map(function (x) { return n(v, 'beta-d-' + x); }));
-    balken(document.getElementById('bron'), bronnen.map(function (b) { return [b, n(v, 'www-s-' + b) + n(v, 'beta-s-' + b)]; }));
-    balken(document.getElementById('taal'), talen.map(function (t) { return [t.toUpperCase(), n(v, 'www-l-' + t) + n(v, 'beta-l-' + t)]; }));
-    document.getElementById('stand').textContent = klaar
-      ? 'Stand van ' + new Date().toLocaleString('nl-NL') + ' · ververs de pagina voor nieuwe cijfers'
-      : 'Cijfers laden… ' + Object.keys(v).length + ' van ' + keys.length;
-  });
-  var uitEl = document.getElementById('uitstand'), knop = document.getElementById('uit');
-  function toon() {
-    var u = false; try { u = localStorage.getItem('hc-notrack') === '1'; } catch (e) {}
-    uitEl.textContent = u ? 'Dit apparaat wordt niet meegeteld.' : 'Dit apparaat telt nu mee.';
-    knop.textContent = u ? 'Weer meetellen' : 'Dit apparaat niet meetellen';
-  }
-  knop.addEventListener('click', function () {
-    try { if (localStorage.getItem('hc-notrack') === '1') localStorage.removeItem('hc-notrack'); else localStorage.setItem('hc-notrack', '1'); } catch (e) {}
-    toon();
-  });
-  toon();
-})();
-</script>
+<script src="/stats/stats.js"></script>
 </body>
 </html>
