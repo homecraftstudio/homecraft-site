@@ -1,15 +1,20 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-i18n="meta.titel">HomeCraft — je huis in 3D, live in Home Assistant</title>
-<meta name="description" data-i18n-content="meta.omschrijving" content="HomeCraft toont je huis als echt 3D-model van boven in Home Assistant, met live lamplicht, apparaten en editors voor plattegrond, interieur en keuken. Open source en volledig lokaal.">
+<title data-i18n="meta.titel">HomeCraft — your home in 3D, live in Home Assistant</title>
+<meta name="description" data-i18n-content="meta.omschrijving" content="HomeCraft shows your home as a real 3D model from above in Home Assistant, with live lamp light, devices and editors for floor plan, interior and kitchen. Open source and fully local.">
 <meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d141c" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://homecraft.studio/">
-<link rel="alternate" hreflang="nl" href="https://homecraft.studio/?lang=nl">
 <link rel="alternate" hreflang="en" href="https://homecraft.studio/?lang=en">
+<link rel="alternate" hreflang="nl" href="https://homecraft.studio/?lang=nl">
+<link rel="alternate" hreflang="de" href="https://homecraft.studio/?lang=de">
+<link rel="alternate" hreflang="fr" href="https://homecraft.studio/?lang=fr">
+<link rel="alternate" hreflang="es" href="https://homecraft.studio/?lang=es">
+<link rel="alternate" hreflang="zh-Hans" href="https://homecraft.studio/?lang=zh">
+<link rel="alternate" hreflang="hi" href="https://homecraft.studio/?lang=hi">
 <link rel="alternate" hreflang="x-default" href="https://homecraft.studio/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
@@ -17,22 +22,28 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="HomeCraft">
 <meta property="og:url" content="https://homecraft.studio/">
-<meta property="og:title" content="HomeCraft — je huis in 3D, live in Home Assistant">
-<meta property="og:description" content="Je huis als echt 3D-model van boven, met live lamplicht en al je apparaten. Open source en volledig lokaal.">
-<meta property="og:image" content="https://homecraft.studio/img/og.jpg">
+<meta property="og:title" data-i18n-content="og.titel" content="HomeCraft — your home in 3D, live in Home Assistant">
+<meta property="og:description" data-i18n-content="og.omschrijving" content="Your home as a real 3D model from above, with live lamp light and all your devices. Open source and fully local.">
+<meta property="og:image" content="https://homecraft.studio/img/en/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="HomeCraft: een echt huis in 3D in Home Assistant">
-<meta property="og:locale" content="nl_NL">
-<meta property="og:locale:alternate" content="en_US">
+<meta property="og:image:alt" data-i18n-content="og.alt" content="HomeCraft: a real house in 3D in Home Assistant">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="nl_NL">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="es_ES">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="hi_IN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="HomeCraft — je huis in 3D, live in Home Assistant">
-<meta name="twitter:description" content="Je huis als echt 3D-model van boven, met live lamplicht en al je apparaten. Open source en volledig lokaal.">
-<meta name="twitter:image" content="https://homecraft.studio/img/og.jpg">
-<link rel="preload" as="image" href="/img/dashboard.avif" type="image/avif" media="(min-width: 641px)" fetchpriority="high">
-<link rel="preload" as="image" href="/img/dashboard-smal.avif" type="image/avif" media="(max-width: 640px)" fetchpriority="high">
+<meta name="twitter:title" data-i18n-content="og.titel" content="HomeCraft — your home in 3D, live in Home Assistant">
+<meta name="twitter:description" data-i18n-content="og.omschrijving" content="Your home as a real 3D model from above, with live lamp light and all your devices. Open source and fully local.">
+<meta name="twitter:image" content="https://homecraft.studio/img/en/og.jpg">
+<link rel="preload" as="image" href="/img/en/dashboard.avif" type="image/avif" media="(min-width: 641px)" fetchpriority="high">
+<link rel="preload" as="image" href="/img/en/dashboard-smal.avif" type="image/avif" media="(max-width: 640px)" fetchpriority="high">
 <link rel="stylesheet" href="/style.css">
-<script>document.documentElement.classList.add('js')</script>
+<script>/* Vroege taalkeuze (zie i18n.js): ?lang=xx of de eerder gekozen taal; laadt de vertaling al tijdens het opbouwen. */
+(function(d){var h=d.documentElement,t=null;h.classList.add('js');try{t=new URLSearchParams(location.search).get('lang')}catch(e){}if(!t){try{t=localStorage.getItem('hc-taal')}catch(e){}}t=String(t||'').toLowerCase().slice(0,2);if(/^(nl|de|fr|es|zh|hi)$/.test(t)){h.lang=t==='zh'?'zh-Hans':t;h.classList.add('hc-vertaal');var s=d.createElement('script');s.src='/i18n/'+t+'.js';s.id='hc-taal-'+t;d.head.appendChild(s);setTimeout(function(){h.classList.remove('hc-vertaal')},3000)}})(document);</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -43,22 +54,31 @@
   <symbol id="i-thuis" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7M6 9.5V20h12V9.5"/></symbol>
   <symbol id="i-talen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
   <symbol id="i-kaart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 3 8.5l9 5 9-5-9-5z"/><path d="M3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></symbol>
+  <symbol id="i-omlaag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5l6 6 6-6"/></symbol>
   <symbol id="i-tablet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M11 16h2"/></symbol>
 </svg>
-<a class="skip" href="#inhoud" data-i18n="skip">Naar de inhoud</a>
+<a class="skip" href="#inhoud" data-i18n="skip">Skip to content</a>
 
 <header class="kop">
   <div class="wrap">
-    <a class="merk" href="/" aria-label="HomeCraft, naar het begin" data-i18n-aria="merk.aria"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>Home<b>Craft</b></span></a>
-    <nav class="nav" aria-label="Hoofdmenu" data-i18n-aria="nav.aria">
-      <a href="#functies" data-i18n="nav.functies">Functies</a>
-      <a href="#hoe" data-i18n="nav.hoe">Hoe werkt het</a>
-      <a href="#vragen" data-i18n="nav.vragen">Vragen</a>
+    <a class="merk" href="/" aria-label="HomeCraft, back to top" data-i18n-aria="merk.aria"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>Home<b>Craft</b></span></a>
+    <nav class="nav" aria-label="Main menu" data-i18n-aria="nav.aria">
+      <a href="#functies" data-i18n="nav.functies">Features</a>
+      <a href="#hoe" data-i18n="nav.hoe">How it works</a>
+      <a href="#vragen" data-i18n="nav.vragen">FAQ</a>
     </nav>
     <div class="kop-rechts">
-      <div class="taal" role="group" aria-label="Taal / Language">
-        <button type="button" data-taal="nl" aria-pressed="true" lang="nl" title="Nederlands">NL</button>
-        <button type="button" data-taal="en" aria-pressed="false" lang="en" title="English">EN</button>
+      <div class="taal" data-taalkiezer>
+        <button type="button" class="taal-knop" aria-expanded="false" aria-controls="taal-lijst" aria-label="Language: English"><svg aria-hidden="true"><use href="#i-talen"/></svg><span class="taal-code" aria-hidden="true">EN</span><svg class="taal-pijl" aria-hidden="true"><use href="#i-omlaag"/></svg></button>
+        <ul class="taal-lijst" id="taal-lijst" hidden>
+          <li><a href="?lang=en" data-taal="en" lang="en" hreflang="en" aria-current="true">English</a></li>
+          <li><a href="?lang=nl" data-taal="nl" lang="nl" hreflang="nl">Nederlands</a></li>
+          <li><a href="?lang=de" data-taal="de" lang="de" hreflang="de">Deutsch</a></li>
+          <li><a href="?lang=fr" data-taal="fr" lang="fr" hreflang="fr">Français</a></li>
+          <li><a href="?lang=es" data-taal="es" lang="es" hreflang="es">Español</a></li>
+          <li><a href="?lang=zh" data-taal="zh" lang="zh-Hans" hreflang="zh-Hans">中文</a></li>
+          <li><a href="?lang=hi" data-taal="hi" lang="hi" hreflang="hi">हिन्दी</a></li>
+        </ul>
       </div>
       <a class="knop knop-rand knop-klein" href="https://github.com/homecraftstudio/homecraft" aria-label="GitHub"><svg aria-hidden="true"><use href="#i-code"/></svg><span>GitHub</span></a>
     </div>
@@ -69,26 +89,26 @@
   <div class="hero">
     <div class="wrap">
       <div class="hero-tekst">
-        <span class="label"><i aria-hidden="true"></i><span data-i18n="hero.label">Voor Home Assistant · open source</span></span>
-        <h1 data-i18n-html="hero.titel">Je huis in 3D. <em>Live</em>, van boven.</h1>
-        <p class="lead" data-i18n="hero.lead">HomeCraft toont je huis als echt 3D-model in Home Assistant. Lampen gloeien zoals ze écht branden, apparaten tonen hun stand, en je ziet in één blik wat er thuis gebeurt.</p>
+        <span class="label"><i aria-hidden="true"></i><span data-i18n="hero.label">For Home Assistant · open source</span></span>
+        <h1 data-i18n-html="hero.titel">Your home in 3D. <em>Live</em>, from above.</h1>
+        <p class="lead" data-i18n="hero.lead">HomeCraft shows your home as a real 3D model in Home Assistant. Lamps glow the way they really shine, devices show their state, and you see at a glance what is happening at home.</p>
         <div class="acties">
-          <a class="knop knop-vol" href="https://github.com/homecraftstudio/homecraft"><svg aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="cta.github">Bekijk op GitHub</span></a>
-          <a class="knop knop-rand" href="https://beta.homecraft.studio/"><svg aria-hidden="true"><use href="#i-slot"/></svg><span data-i18n="cta.beta">Beta: alleen op uitnodiging</span></a>
+          <a class="knop knop-vol" href="https://github.com/homecraftstudio/homecraft"><svg aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="cta.github">View on GitHub</span></a>
+          <a class="knop knop-rand" href="https://beta.homecraft.studio/"><svg aria-hidden="true"><use href="#i-slot"/></svg><span data-i18n="cta.beta">Beta: invitation only</span></a>
         </div>
         <ul class="feiten">
-          <li><svg aria-hidden="true"><use href="#i-slot"/></svg><span data-i18n="feit.lokaal">Alles lokaal in Home Assistant</span></li>
-          <li><svg aria-hidden="true"><use href="#i-talen"/></svg><span data-i18n="feit.talen">7 talen</span></li>
-          <li><svg aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="feit.gratis">Gratis en open source</span></li>
+          <li><svg aria-hidden="true"><use href="#i-slot"/></svg><span data-i18n="feit.lokaal">Everything local in Home Assistant</span></li>
+          <li><svg aria-hidden="true"><use href="#i-talen"/></svg><span data-i18n="feit.talen">7 languages</span></li>
+          <li><svg aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="feit.gratis">Free and open source</span></li>
         </ul>
       </div>
       <div class="venster">
         <div class="venster-balk" aria-hidden="true"><i></i><i></i><i></i></div>
         <picture>
-          <source media="(max-width: 640px)" srcset="/img/dashboard-smal.avif" type="image/avif" width="726" height="466">
-          <source media="(max-width: 640px)" srcset="/img/dashboard-smal.webp" type="image/webp" width="726" height="466">
-          <source srcset="/img/dashboard.avif" type="image/avif">
-          <img src="/img/dashboard.webp" width="1400" height="640" fetchpriority="high" alt="Het HomeCraft-paneel in Home Assistant: een echt huis in 3D bij schemering, met tuin, oprit en labels per ruimte." data-i18n-alt="alt.dashboard">
+          <source media="(max-width: 640px)" srcset="/img/en/dashboard-smal.avif" type="image/avif" width="726" height="466">
+          <source media="(max-width: 640px)" srcset="/img/en/dashboard-smal.webp" type="image/webp" width="726" height="466">
+          <source srcset="/img/en/dashboard.avif" type="image/avif">
+          <img src="/img/en/dashboard.webp" width="1400" height="640" fetchpriority="high" alt="The HomeCraft panel in Home Assistant: a real house in 3D at dusk, with garden, driveway and a label for each room." data-i18n-alt="alt.dashboard">
         </picture>
       </div>
     </div>
@@ -97,53 +117,53 @@
   <section id="functies" class="band">
     <div class="wrap">
       <div class="sectie-kop opkomen">
-        <p class="oog" data-i18n="func.oog">Functies</p>
-        <h2 data-i18n="func.titel">Alles wat thuis gebeurt, in één beeld.</h2>
-        <p data-i18n="func.lead">Geen lijstjes met schakelaars, maar je eigen huis: met de kamers waar je woont, de lampen die branden en de apparaten die draaien.</p>
+        <p class="oog" data-i18n="func.oog">Features</p>
+        <h2 data-i18n="func.titel">Everything happening at home, in one view.</h2>
+        <p data-i18n="func.lead">Not lists of switches, but your own home: with the rooms you live in, the lamps that are on and the devices that are running.</p>
       </div>
 
       <div class="functies">
         <article class="functie opkomen">
           <div class="functie-beeld">
-            <picture><source srcset="/img/huis.avif" type="image/avif"><img src="/img/huis.webp" width="338" height="420" loading="lazy" alt="Een huis in 3D van schuin boven, met labels voor eetkamer, woonkamer, bijkeuken en de kamers boven." data-i18n-alt="alt.huis"></picture>
+            <picture><source srcset="/img/en/huis.avif" type="image/avif"><img src="/img/en/huis.webp" width="338" height="420" loading="lazy" alt="A house in 3D seen from above at an angle, with labels for dining room, living room, utility room and the rooms upstairs." data-i18n-alt="alt.huis"></picture>
           </div>
           <div>
-            <h3 data-i18n="f1.titel">3D van boven, met live licht</h3>
-            <p data-i18n="f1.tekst">Je huis als echt 3D-model: gevel, dak, verdiepingen en kamers. Daglicht volgt de zon en het weer; lampen zijn echte lichtbronnen die dimmen en van kleur verschieten, precies zoals in huis.</p>
+            <h3 data-i18n="f1.titel">3D from above, with live light</h3>
+            <p data-i18n="f1.tekst">Your home as a real 3D model: facade, roof, floors and rooms. Daylight follows the sun and the weather; lamps are real light sources that dim and change colour, just like at home.</p>
             <ul>
-              <li data-i18n="f1.p1">Van het hele huis naar één verdieping of kamer</li>
-              <li data-i18n="f1.p2">Licht valt door deuropeningen de gang in</li>
-              <li data-i18n="f1.p3">Tekent alleen als er iets verandert: zuinig voor een tablet</li>
+              <li data-i18n="f1.p1">From the whole house to a single floor or room</li>
+              <li data-i18n="f1.p2">Light spills through doorways into the hall</li>
+              <li data-i18n="f1.p3">Only draws when something changes: easy on a tablet</li>
             </ul>
           </div>
         </article>
 
         <article class="functie opkomen">
           <div class="functie-beeld">
-            <picture><source srcset="/img/kamer.avif" type="image/avif"><img src="/img/kamer.webp" width="337" height="420" loading="lazy" alt="De woonkamer en keuken van dichtbij in 3D, met meubels, lampen die aan zijn en de oprit ernaast." data-i18n-alt="alt.kamer"></picture>
+            <picture><source srcset="/img/en/kamer.avif" type="image/avif"><img src="/img/en/kamer.webp" width="337" height="420" loading="lazy" alt="The living room and kitchen up close in 3D, with furniture, lamps that are on and the driveway next to it." data-i18n-alt="alt.kamer"></picture>
           </div>
           <div>
-            <h3 data-i18n="f2.titel">Lampen, apparaten en je auto uit Home Assistant</h3>
-            <p data-i18n="f2.tekst">Koppel wat je al hebt. Ruim 50 soorten apparaten krijgen een eigen klein 3D-model dat zijn stand laat zien: de radiator gloeit, de wasmachine trilt, het scherm licht op.</p>
+            <h3 data-i18n="f2.titel">Lamps, devices and your car from Home Assistant</h3>
+            <p data-i18n="f2.tekst">Connect what you already have. More than 50 kinds of devices get their own small 3D model that shows their state: the radiator glows, the washing machine shakes, the screen lights up.</p>
             <ul>
-              <li data-i18n="f2.p1">Tik om te schakelen, vasthouden voor meer</li>
-              <li data-i18n="f2.p2">Klimaat, camera, media en meldingen op hun plek in huis</li>
-              <li data-i18n="f2.p3">Ruimtes koppelen vanzelf aan je gebieden, in zeven talen</li>
+              <li data-i18n="f2.p1">Tap to switch, hold for more</li>
+              <li data-i18n="f2.p2">Climate, cameras, media and alerts in their place in the house</li>
+              <li data-i18n="f2.p3">Rooms link to your areas automatically, in seven languages</li>
             </ul>
           </div>
         </article>
 
         <article class="functie opkomen">
           <div class="functie-beeld">
-            <picture><source srcset="/img/verdieping.avif" type="image/avif"><img src="/img/verdieping.webp" width="337" height="420" loading="lazy" alt="De begane grond recht van boven: eettafel, keuken, trap en woonkamer, met de lampen die aan zijn." data-i18n-alt="alt.verdieping"></picture>
+            <picture><source srcset="/img/en/verdieping.avif" type="image/avif"><img src="/img/en/verdieping.webp" width="337" height="420" loading="lazy" alt="The ground floor seen straight from above: dining table, kitchen, stairs and living room, with the lamps that are on." data-i18n-alt="alt.verdieping"></picture>
           </div>
           <div>
-            <h3 data-i18n="f3.titel">Teken je huis zelf: plattegrond, interieur en keuken</h3>
-            <p data-i18n="f3.tekst">Drie editors met één vertrouwde opbouw. Teken muren, ruimtes, deuren en ramen; richt de kamers in met meubels; ontwerp je keuken. HomeCraft bouwt er zelf het 3D-huis van.</p>
+            <h3 data-i18n="f3.titel">Draw your own home: floor plan, interior and kitchen</h3>
+            <p data-i18n="f3.tekst">Three editors with one familiar layout. Draw walls, rooms, doors and windows; furnish the rooms; design your kitchen. HomeCraft builds the 3D house for you.</p>
             <ul>
-              <li data-i18n="f3.p1">Gewoon in Home Assistant, op elk apparaat met een browser</li>
-              <li data-i18n="f3.p2">Of begin met een voorbeeldhuis</li>
-              <li data-i18n="f3.p3">Je hele huis in één back-upbestand</li>
+              <li data-i18n="f3.p1">Right inside Home Assistant, on any device with a browser</li>
+              <li data-i18n="f3.p2">Or start with a sample house</li>
+              <li data-i18n="f3.p3">Your whole home in one backup file</li>
             </ul>
           </div>
         </article>
@@ -152,23 +172,23 @@
       <div class="raster">
         <div class="kaart opkomen">
           <div class="ico"><svg aria-hidden="true"><use href="#i-kaart"/></svg></div>
-          <h3 data-i18n="k1.titel">Klimaat, energie en signaal</h3>
-          <p data-i18n="k1.tekst">Zie waar het warm of koud is, waar je stroom heen gaat en waar het draadloze signaal zwak is, als kaart over je eigen plattegrond.</p>
+          <h3 data-i18n="k1.titel">Climate, energy and signal</h3>
+          <p data-i18n="k1.tekst">See where it is warm or cold, where your power goes and where the wireless signal is weak, as a map over your own floor plan.</p>
         </div>
         <div class="kaart opkomen">
           <div class="ico"><svg aria-hidden="true"><use href="#i-tablet"/></svg></div>
-          <h3 data-i18n="k2.titel">Wandtablet en kiosk</h3>
-          <p data-i18n="k2.tekst">Gemaakt voor een tablet aan de muur: geef elk scherm een eigen naam, laat automatiseringen erheen vliegen, of zet het op alleen bekijken.</p>
+          <h3 data-i18n="k2.titel">Wall tablet and kiosk</h3>
+          <p data-i18n="k2.tekst">Made for a tablet on the wall: give each screen its own name, let automations fly to a room, or set it to view only.</p>
         </div>
         <div class="kaart opkomen">
           <div class="ico"><svg aria-hidden="true"><use href="#i-talen"/></svg></div>
-          <h3 data-i18n="k3.titel">Zeven talen</h3>
-          <p data-i18n="k3.tekst">Nederlands, Engels, Duits, Frans, Spaans, Chinees en Hindi. Elke tekst, in elke editor.</p>
+          <h3 data-i18n="k3.titel">Seven languages</h3>
+          <p data-i18n="k3.tekst">English, Dutch, German, French, Spanish, Chinese and Hindi. Every text, in every editor.</p>
         </div>
         <div class="kaart opkomen">
           <div class="ico"><svg aria-hidden="true"><use href="#i-slot"/></svg></div>
-          <h3 data-i18n="k4.titel">Privé: alles blijft thuis</h3>
-          <p data-i18n="k4.tekst">Je huis, je lampen en je instellingen staan in je eigen Home Assistant. Geen account, geen cloud, er wordt niets verstuurd.</p>
+          <h3 data-i18n="k4.titel">Private: everything stays home</h3>
+          <p data-i18n="k4.tekst">Your home, your lamps and your settings live in your own Home Assistant. No account, no cloud, nothing is sent anywhere.</p>
         </div>
       </div>
     </div>
@@ -178,17 +198,17 @@
     <div class="wrap">
       <article class="functie opkomen">
         <div class="functie-beeld laag">
-          <picture><source srcset="/img/instellingen.avif" type="image/avif"><img src="/img/instellingen.webp" width="418" height="660" loading="lazy" class="achter" alt="De instellingen van HomeCraft: paneelnaam van het scherm, ruimtes en gebieden, rechten en back-up." data-i18n-alt="alt.instellingen"></picture>
-          <picture><source srcset="/img/reparatie.avif" type="image/avif"><img src="/img/reparatie.webp" width="600" height="320" loading="lazy" class="voor" alt="Een reparatiemelding van HomeCraft in Home Assistant over gekoppelde entiteiten die niet meer bestaan." data-i18n-alt="alt.reparatie"></picture>
+          <picture><source srcset="/img/en/instellingen.avif" type="image/avif"><img src="/img/en/instellingen.webp" width="418" height="660" loading="lazy" class="achter" alt="HomeCraft settings: panel name of this screen, rooms and areas, permissions and backup." data-i18n-alt="alt.instellingen"></picture>
+          <picture><source srcset="/img/en/reparatie.avif" type="image/avif"><img src="/img/en/reparatie.webp" width="600" height="320" loading="lazy" class="voor" alt="A HomeCraft repair notice in Home Assistant about linked entities that no longer exist." data-i18n-alt="alt.reparatie"></picture>
         </div>
         <div>
-          <p class="oog" data-i18n="thuis.oog">Thuis in Home Assistant</p>
-          <h3 data-i18n="thuis.titel">Voelt als een deel van Home Assistant</h3>
-          <p data-i18n="thuis.tekst">HomeCraft is een gewone integratie met een eigen paneel en een dashboardkaart. Het werkt met je gebieden, je gebruikersrechten, je automatiseringen en je meldingen.</p>
+          <p class="oog" data-i18n="thuis.oog">At home in Home Assistant</p>
+          <h3 data-i18n="thuis.titel">Feels like part of Home Assistant</h3>
+          <p data-i18n="thuis.tekst">HomeCraft is a regular integration with its own panel and a dashboard card. It works with your areas, your user permissions, your automations and your notifications.</p>
           <ul>
-            <li data-i18n="thuis.p1">Dashboardkaart voor huis, verdieping of kamer</li>
-            <li data-i18n="thuis.p2">Acties voor automatiseringen: vlieg naar een kamer, laat een ruimte oplichten bij een alarm</li>
-            <li data-i18n="thuis.p3">Meldt zelf wat er mis is, met een oplossing erbij</li>
+            <li data-i18n="thuis.p1">Dashboard card for the house, a floor or a room</li>
+            <li data-i18n="thuis.p2">Actions for automations: fly to a room, highlight a room during an alarm</li>
+            <li data-i18n="thuis.p3">Reports what is wrong by itself, with a fix included</li>
           </ul>
         </div>
       </article>
@@ -198,21 +218,21 @@
   <section id="hoe" class="band">
     <div class="wrap">
       <div class="sectie-kop opkomen">
-        <p class="oog" data-i18n="hoe.oog">Hoe werkt het</p>
-        <h2 data-i18n="hoe.titel">In drie stappen je huis op het scherm.</h2>
+        <p class="oog" data-i18n="hoe.oog">How it works</p>
+        <h2 data-i18n="hoe.titel">Your home on screen in three steps.</h2>
       </div>
       <ol class="stappen">
         <li class="opkomen">
-          <h3 data-i18n="s1.titel">Installeer de integratie</h3>
-          <p data-i18n="s1.tekst">Voeg HomeCraft toe aan Home Assistant als eigen repository en herstart. Daarna staat HomeCraft in je zijbalk.</p>
+          <h3 data-i18n="s1.titel">Install the integration</h3>
+          <p data-i18n="s1.tekst">Add HomeCraft to Home Assistant as a custom repository and restart. HomeCraft then appears in your sidebar.</p>
         </li>
         <li class="opkomen">
-          <h3 data-i18n="s2.titel">Teken je huis</h3>
-          <p data-i18n="s2.tekst">Teken muren, ruimtes, deuren en ramen, of begin met het voorbeeldhuis. HomeCraft bouwt het 3D-model en bakt het daglicht.</p>
+          <h3 data-i18n="s2.titel">Draw your home</h3>
+          <p data-i18n="s2.tekst">Draw walls, rooms, doors and windows, or start with the sample house. HomeCraft builds the 3D model and bakes the daylight.</p>
         </li>
         <li class="opkomen">
-          <h3 data-i18n="s3.titel">Koppel je lampen en apparaten</h3>
-          <p data-i18n="s3.tekst">Lichtpunten uit je plattegrond staan al klaar als voorstel. Tik erop, kies de lamp, en zie hem live branden.</p>
+          <h3 data-i18n="s3.titel">Connect your lamps and devices</h3>
+          <p data-i18n="s3.tekst">Light points from your floor plan are already suggested. Tap one, pick the lamp, and watch it shine live.</p>
         </li>
       </ol>
     </div>
@@ -221,55 +241,55 @@
   <section id="vragen">
     <div class="wrap">
       <div class="sectie-kop opkomen">
-        <p class="oog" data-i18n="faq.oog">Veelgestelde vragen</p>
-        <h2 data-i18n="faq.titel">Goed om te weten.</h2>
+        <p class="oog" data-i18n="faq.oog">Frequently asked questions</p>
+        <h2 data-i18n="faq.titel">Good to know.</h2>
       </div>
       <div class="faq">
         <details>
-          <summary data-i18n="q1.v">Wat heb ik nodig?</summary>
+          <summary data-i18n="q1.v">What do I need?</summary>
           <div class="antw">
             <ul>
-              <li data-i18n-html="q1.a1">Home Assistant <strong>2024.7</strong> of nieuwer.</li>
-              <li data-i18n-html="q1.a2">Een recente browser met <strong>WebGL2</strong>. Alle gangbare browsers van de laatste jaren hebben dat, op computer, tablet en telefoon.</li>
-              <li data-i18n="q1.a3">Je eigen lampen en apparaten in Home Assistant, als je die wilt koppelen. Zonder kun je ook al tekenen en rondkijken.</li>
+              <li data-i18n-html="q1.a1">Home Assistant <strong>2024.7</strong> or newer.</li>
+              <li data-i18n-html="q1.a2">A recent browser with <strong>WebGL2</strong>. All common browsers from recent years support it, on desktop, tablet and phone.</li>
+              <li data-i18n="q1.a3">Your own lamps and devices in Home Assistant, if you want to connect them. Without them you can still draw and look around.</li>
             </ul>
           </div>
         </details>
         <details>
-          <summary data-i18n="q2.v">Is HomeCraft gratis?</summary>
+          <summary data-i18n="q2.v">Is HomeCraft free?</summary>
           <div class="antw">
-            <p data-i18n="q2.a1">Ja. HomeCraft is gratis en open source: de code is vrije software onder de GPL-3.0. De bouwkern die van je plattegrond een 3D-huis maakt is een gesloten module met een eigen licentie, en die is ook gratis te gebruiken en mee te verspreiden.</p>
+            <p data-i18n="q2.a1">Yes. HomeCraft is free and open source: the code is free software under the GPL-3.0. The building core that turns your floor plan into a 3D house is a closed module with its own licence, and it is also free to use and redistribute.</p>
           </div>
         </details>
         <details>
-          <summary data-i18n="q3.v">Wat gebeurt er met mijn gegevens?</summary>
+          <summary data-i18n="q3.v">What happens to my data?</summary>
           <div class="antw">
-            <p data-i18n="q3.a1">Niets buiten je huis. Alles staat lokaal in je eigen Home Assistant: je huis, je lampen, je apparaten en je instellingen. HomeCraft heeft geen account en geen cloud, en verstuurt niets.</p>
-            <p data-i18n="q3.a2">Ook deze website gebruikt geen cookies, geen trackers en geen externe lettertypen.</p>
+            <p data-i18n="q3.a1">Nothing outside your home. Everything is stored locally in your own Home Assistant: your house, lamps, devices and settings. HomeCraft has no account and no cloud, and sends nothing.</p>
+            <p data-i18n="q3.a2">This website also uses no cookies, no trackers and no external fonts.</p>
           </div>
         </details>
         <details>
-          <summary data-i18n="q4.v">Werkt het op een wandtablet?</summary>
+          <summary data-i18n="q4.v">Does it work on a wall tablet?</summary>
           <div class="antw">
-            <p data-i18n="q4.a1">Daar is HomeCraft voor gemaakt. Een paar tips:</p>
+            <p data-i18n="q4.a1">That is what HomeCraft was made for. A few tips:</p>
             <ul>
-              <li data-i18n="q4.a2">Zet de browser of een kiosk-app op volledig scherm en houd het scherm aan.</li>
-              <li data-i18n-html="q4.a3">Geef elk scherm een eigen naam onder <em>Instellingen › Paneel-ID van dit scherm</em>; dan kunnen automatiseringen precies dat scherm aansturen.</li>
-              <li data-i18n-html="q4.a4">Laat <em>Zuinig tekenen</em> aan: in rust tekent HomeCraft niets, dus de tablet blijft koel. Zwakke tablets krijgen vanzelf een lichtere kwaliteit.</li>
-              <li data-i18n="q4.a5">Zet een gedeeld scherm in de hal op alleen bekijken, zodat niemand per ongeluk iets aanpast.</li>
+              <li data-i18n="q4.a2">Put the browser or a kiosk app in full screen and keep the screen on.</li>
+              <li data-i18n-html="q4.a3">Give each screen its own name under <em>Settings › Panel ID of this screen</em>, so automations can target exactly that screen.</li>
+              <li data-i18n-html="q4.a4">Leave <em>Power-saving drawing</em> on: at rest HomeCraft draws nothing, so the tablet stays cool. Weaker tablets automatically get a lighter quality.</li>
+              <li data-i18n="q4.a5">Set a shared screen in the hall to view only, so nobody changes anything by accident.</li>
             </ul>
           </div>
         </details>
         <details>
-          <summary data-i18n="q5.v">Moet ik mijn huis helemaal zelf tekenen?</summary>
+          <summary data-i18n="q5.v">Do I have to draw my whole home myself?</summary>
           <div class="antw">
-            <p data-i18n="q5.a1">Je tekent de plattegrond in HomeCraft zelf, met muren, ruimtes, deuren en ramen. Daar heb je geen ander programma voor nodig. Wil je eerst rondkijken, begin dan met het voorbeeldhuis.</p>
+            <p data-i18n="q5.a1">You draw the floor plan yourself in HomeCraft, with walls, rooms, doors and windows. You do not need any other program for that. Want to look around first? Start with the sample house.</p>
           </div>
         </details>
         <details>
-          <summary data-i18n="q6.v">Kan ik meedoen aan de beta?</summary>
+          <summary data-i18n="q6.v">Can I join the beta?</summary>
           <div class="antw">
-            <p data-i18n="q6.a1">De beta is op dit moment alleen op uitnodiging, voor een kleine groep testers. De code staat wel al openbaar op GitHub.</p>
+            <p data-i18n="q6.a1">The beta is currently by invitation only, for a small group of testers. The code is already public on GitHub.</p>
           </div>
         </details>
       </div>
@@ -280,11 +300,11 @@
     <div class="wrap">
       <div class="slot-vlak opkomen">
         <svg class="groot" aria-hidden="true"><use href="#i-logo"/></svg>
-        <h2 data-i18n="slot.titel">Zie je huis zoals het is.</h2>
-        <p data-i18n="slot.tekst">Open source, lokaal en gemaakt voor Home Assistant.</p>
+        <h2 data-i18n="slot.titel">See your home as it is.</h2>
+        <p data-i18n="slot.tekst">Open source, local and made for Home Assistant.</p>
         <div class="acties">
-          <a class="knop knop-vol" href="https://github.com/homecraftstudio/homecraft"><svg aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="cta.github">Bekijk op GitHub</span></a>
-          <a class="knop knop-rand" href="https://beta.homecraft.studio/"><svg aria-hidden="true"><use href="#i-slot"/></svg><span data-i18n="cta.beta">Beta: alleen op uitnodiging</span></a>
+          <a class="knop knop-vol" href="https://github.com/homecraftstudio/homecraft"><svg aria-hidden="true"><use href="#i-code"/></svg><span data-i18n="cta.github">View on GitHub</span></a>
+          <a class="knop knop-rand" href="https://beta.homecraft.studio/"><svg aria-hidden="true"><use href="#i-slot"/></svg><span data-i18n="cta.beta">Beta: invitation only</span></a>
         </div>
       </div>
     </div>
@@ -293,11 +313,11 @@
 
 <footer class="voet">
   <div class="wrap">
-    <p data-i18n="voet.tekst">HomeCraft is een zelfstandig project en niet verbonden aan Home Assistant. Code onder GPL-3.0; de bouwkern is een gesloten module met een eigen licentie.</p>
-    <nav aria-label="Voettekst" data-i18n-aria="voet.aria">
+    <p data-i18n="voet.tekst">HomeCraft is an independent project and not affiliated with Home Assistant. Code under GPL-3.0; the building core is a closed module with its own licence.</p>
+    <nav aria-label="Footer" data-i18n-aria="voet.aria">
       <a href="https://github.com/homecraftstudio/homecraft">GitHub</a>
-      <a href="https://github.com/homecraftstudio/homecraft/blob/main/LICENSE" data-i18n="voet.licentie">Licentie</a>
-      <a href="https://github.com/homecraftstudio/homecraft/issues" data-i18n="voet.melden">Probleem melden</a>
+      <a href="https://github.com/homecraftstudio/homecraft/blob/main/LICENSE" data-i18n="voet.licentie">Licence</a>
+      <a href="https://github.com/homecraftstudio/homecraft/issues" data-i18n="voet.melden">Report a problem</a>
       <a href="https://beta.homecraft.studio/">Beta</a>
     </nav>
   </div>

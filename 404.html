@@ -1,15 +1,17 @@
 <!doctype html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title data-i18n="n.titel">Pagina niet gevonden — HomeCraft</title>
+<title data-i18n="n.titel">Page not found — HomeCraft</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#f8f6f1" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0d141c" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="/style.css">
+<script>/* Vroege taalkeuze (zie i18n.js): ?lang=xx of de eerder gekozen taal; laadt de vertaling al tijdens het opbouwen. */
+(function(d){var h=d.documentElement,t=null;h.classList.add('js');try{t=new URLSearchParams(location.search).get('lang')}catch(e){}if(!t){try{t=localStorage.getItem('hc-taal')}catch(e){}}t=String(t||'').toLowerCase().slice(0,2);if(/^(nl|de|fr|es|zh|hi)$/.test(t)){h.lang=t==='zh'?'zh-Hans':t;h.classList.add('hc-vertaal');var s=d.createElement('script');s.src='/i18n/'+t+'.js';s.id='hc-taal-'+t;d.head.appendChild(s);setTimeout(function(){h.classList.remove('hc-vertaal')},3000)}})(document);</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -20,15 +22,24 @@
   <symbol id="i-thuis" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11 12 4l8.5 7M6 9.5V20h12V9.5"/></symbol>
   <symbol id="i-talen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></symbol>
   <symbol id="i-kaart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 3 8.5l9 5 9-5-9-5z"/><path d="M3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></symbol>
+  <symbol id="i-omlaag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9.5l6 6 6-6"/></symbol>
   <symbol id="i-tablet" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M11 16h2"/></symbol>
 </svg>
 <header class="kop">
   <div class="wrap">
-    <a class="merk" href="/" aria-label="HomeCraft"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>Home<b>Craft</b></span></a>
+    <a class="merk" href="/" aria-label="HomeCraft, home page" data-i18n-aria="n.merk"><svg aria-hidden="true"><use href="#i-logo"/></svg><span>Home<b>Craft</b></span></a>
     <div class="kop-rechts">
-      <div class="taal" role="group" aria-label="Taal / Language">
-        <button type="button" data-taal="nl" aria-pressed="true" lang="nl" title="Nederlands">NL</button>
-        <button type="button" data-taal="en" aria-pressed="false" lang="en" title="English">EN</button>
+      <div class="taal" data-taalkiezer>
+        <button type="button" class="taal-knop" aria-expanded="false" aria-controls="taal-lijst" aria-label="Language: English"><svg aria-hidden="true"><use href="#i-talen"/></svg><span class="taal-code" aria-hidden="true">EN</span><svg class="taal-pijl" aria-hidden="true"><use href="#i-omlaag"/></svg></button>
+        <ul class="taal-lijst" id="taal-lijst" hidden>
+          <li><a href="?lang=en" data-taal="en" lang="en" hreflang="en" aria-current="true">English</a></li>
+          <li><a href="?lang=nl" data-taal="nl" lang="nl" hreflang="nl">Nederlands</a></li>
+          <li><a href="?lang=de" data-taal="de" lang="de" hreflang="de">Deutsch</a></li>
+          <li><a href="?lang=fr" data-taal="fr" lang="fr" hreflang="fr">Français</a></li>
+          <li><a href="?lang=es" data-taal="es" lang="es" hreflang="es">Español</a></li>
+          <li><a href="?lang=zh" data-taal="zh" lang="zh-Hans" hreflang="zh-Hans">中文</a></li>
+          <li><a href="?lang=hi" data-taal="hi" lang="hi" hreflang="hi">हिन्दी</a></li>
+        </ul>
       </div>
     </div>
   </div>
@@ -36,14 +47,13 @@
 <main class="los">
   <div class="wrap">
     <p class="oog">404</p>
-    <h1 data-i18n="n.kop">Deze pagina bestaat niet.</h1>
-    <p data-i18n="n.tekst">Misschien is de link verouderd of zit er een tikfout in. Het huis staat gewoon nog op de beginpagina.</p>
+    <h1 data-i18n="n.kop">This page does not exist.</h1>
+    <p data-i18n="n.tekst">The link may be outdated or contain a typo. The house is still standing on the home page.</p>
     <div class="acties">
-      <a class="knop knop-vol" href="/"><svg aria-hidden="true"><use href="#i-thuis"/></svg><span data-i18n="n.terug">Naar de beginpagina</span></a>
+      <a class="knop knop-vol" href="/"><svg aria-hidden="true"><use href="#i-thuis"/></svg><span data-i18n="n.terug">Go to the home page</span></a>
     </div>
   </div>
 </main>
-<script>window.HC_I18N_EN={'n.titel':'Page not found — HomeCraft','n.kop':'This page does not exist.','n.tekst':'The link may be outdated or contain a typo. The house is still standing on the home page.','n.terug':'Go to the home page'};</script>
 <script src="/i18n.js"></script>
 </body>
 </html>
