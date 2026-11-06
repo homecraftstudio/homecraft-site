@@ -10,6 +10,7 @@
   --zacht: #4b5562;
   --lijn: #e2ddd2;
   --accent-tekst: #9a520f;
+  --oranje-groot: #c06a12;
   --knop: #16212e;
   --knop-tekst: #ffffff;
   --schaduw: 0 1px 2px rgb(22 33 46 / .06), 0 12px 32px -8px rgb(22 33 46 / .18);
@@ -30,6 +31,7 @@
     --zacht: #a7b2be;
     --lijn: #263445;
     --accent-tekst: #f2a75a;
+    --oranje-groot: #e08a2e;
     --knop: #e08a2e;
     --knop-tekst: #16212e;
     --schaduw: 0 1px 2px rgb(0 0 0 / .3), 0 12px 32px -8px rgb(0 0 0 / .5);
@@ -65,7 +67,7 @@ p { margin: 0; text-wrap: pretty; }
 .kop .wrap { display: flex; align-items: center; gap: 12px; height: 64px; }
 .merk { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 650; font-size: 21px; letter-spacing: -.02em; color: var(--tekst); flex: none; }
 .merk svg { width: 30px; height: 30px; color: var(--tekst); }
-.merk b { color: var(--oranje); font-weight: inherit; }
+.merk b { color: var(--oranje-groot); font-weight: inherit; }
 .nav { display: none; gap: 4px; margin-left: 20px; }
 .nav a { text-decoration: none; color: var(--zacht); font-size: 15px; font-weight: 500; padding: 8px 12px; border-radius: 10px; }
 .nav a:hover { color: var(--tekst); background: var(--bg-2); }
@@ -93,7 +95,7 @@ p { margin: 0; text-wrap: pretty; }
 .label { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--zacht); border: 1px solid var(--lijn); background: var(--vlak); border-radius: 999px; padding: 6px 12px 6px 8px; }
 .label i { width: 8px; height: 8px; border-radius: 50%; background: var(--oranje); box-shadow: 0 0 0 4px rgb(224 138 46 / .2); }
 .hero h1 { font-size: clamp(40px, 7.4vw, 80px); font-weight: 750; margin-top: 22px; letter-spacing: -.035em; }
-.hero h1 em { font-style: normal; color: var(--oranje); }
+.hero h1 em { font-style: normal; color: var(--oranje-groot); }
 .hero .lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--zacht); margin-top: 20px; max-width: 640px; }
 .acties { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .feiten { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 22px 0 0; padding: 0; list-style: none; color: var(--zacht); font-size: 15px; }
