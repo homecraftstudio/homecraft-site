@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>HomeCraft · bezoekers</title>
+<style>
+:root { --bg:#f6f4ef; --kaart:#fff; --tekst:#1b2430; --zacht:#6b7280; --rand:#e5e1d8; --accent:#c2690f; --accent2:#2f5d8a; color-scheme: light dark; }
+@media (prefers-color-scheme: dark) { :root { --bg:#12171e; --kaart:#1b222c; --tekst:#e8ebef; --zacht:#9aa3ae; --rand:#2a3340; --accent:#f0a14a; --accent2:#7fb0e0; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--tekst); font:15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 22px; margin: 0 0 4px; }
+h2 { font-size: 13px; margin: 0 0 12px; color: var(--zacht); font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+.sub { color: var(--zacht); margin: 0 0 20px; font-size: 13px; }
+.rij { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); gap: 12px; margin-bottom: 4px; }
+.kaart { background:var(--kaart); border:1px solid var(--rand); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+.getal { font-size: 30px; font-weight: 700; line-height: 1.1; }
+.label { color: var(--zacht); font-size: 13px; }
+.balk { display:flex; align-items:center; gap:10px; margin: 6px 0; font-size: 14px; }
+.balk span:first-child { width: 80px; color: var(--zacht); flex: none; }
+.balk i { display:block; height: 10px; border-radius: 5px; background: var(--accent); min-width: 2px; }
+.balk b { font-weight: 600; min-width: 28px; }
+svg { width: 100%; height: auto; display:block; color: var(--tekst); }
+.leg { display:flex; gap:16px; font-size:13px; color:var(--zacht); margin-top:8px; flex-wrap: wrap; }
+.leg span::before { content:""; display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:6px; vertical-align:-1px; background: var(--c); }
+button { font: inherit; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--rand); background: var(--kaart); color: var(--tekst); cursor: pointer; }
+.twee { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 640px) { .twee { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Bezoekers</h1>
+  <p class="sub" id="stand">Laden…</p>
+  <div class="rij" id="totalen"></div>
+  <div class="kaart"><h2>Laatste 14 dagen · homecraft.studio</h2><div id="grafiek"></div>
+    <div class="leg"><span style="--c:var(--accent)">bezoeken</span><span style="--c:var(--accent2)">unieke bezoekers</span></div></div>
+  <div class="kaart"><h2>Laatste 14 dagen · beta</h2><div id="grafiek-beta"></div></div>
+  <div class="twee">
+    <div class="kaart"><h2>Bron</h2><div id="bron"></div></div>
+    <div class="kaart"><h2>Taal</h2><div id="taal"></div></div>
+  </div>
+  <div class="kaart"><h2>Dit apparaat</h2><p class="label" id="uitstand"></p><button id="uit" type="button">Dit apparaat niet meetellen</button></div>
+  <p class="sub">Anonieme telling zonder cookies of persoonsgegevens. Aantallen zijn indicatief.</p>
+</main>
+<script>
+(function () {
+  var NS = 'hcs-k7q2m9', API = 'https://abacus.jasoncameron.dev/get/' + NS + '/';
+  function wacht(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function haal(k, poging) {
+    poging = poging || 0;
+    return fetch(API + k, { cache: 'no-store' }).then(function (r) {
+      if (r.status === 429 && poging < 4) return wacht(3000).then(function () { return haal(k, poging + 1); });
+      return r.ok ? r.json().then(function (j) { return j.value || 0; }) : 0;
+    }, function () { return 0; });
+  }
+  // De dienst staat 30 opvragingen per 10 s toe: rustig na elkaar, en tussendoor tekenen.
+  function veel(keys, klaar) {
+    var uit = {}, i = 0;
+    function volgende() {
+      if (i >= keys.length) return Promise.resolve(uit);
+      var k = keys[i++];
+      return haal(k).then(function (v) { uit[k] = v; if (i % 6 === 0) klaar(uit, false); return wacht(380); }).then(volgende);
+    }
+    return volgende().then(function () { klaar(uit, true); return uit; });
+  }
+  var DAGEN = 14, dagen = [];
+  for (var d = DAGEN - 1; d >= 0; d--) dagen.push(new Date(Date.now() - d * 864e5).toISOString().slice(0, 10));
+  var talen = ['en', 'nl', 'de', 'fr', 'es', 'zh', 'hi'];
+  var bronnen = ['facebook', 'google', 'github', 'direct', 'overig'];
+  var keys = ['www-hits', 'www-uniek', 'beta-hits', 'beta-uniek', 'beta-code', 'beta-gids'];
+  dagen.slice().reverse().forEach(function (x) { keys.push('www-d-' + x, 'www-ud-' + x, 'beta-d-' + x); });
+  bronnen.forEach(function (b) { keys.push('www-s-' + b); });
+  talen.forEach(function (t) { keys.push('www-l-' + t); });
+  bronnen.forEach(function (b) { keys.push('beta-s-' + b); });
+  talen.forEach(function (t) { keys.push('beta-l-' + t); });
+  function kaart(getal, label) { return '<div class="kaart"><div class="getal">' + getal.toLocaleString('nl-NL') + '</div><div class="label">' + label + '</div></div>'; }
+  function balken(el, rijen) {
+    var max = Math.max(1, Math.max.apply(null, rijen.map(function (r) { return r[1]; })));
+    el.innerHTML = rijen.map(function (r) { return '<div class="balk"><span>' + r[0] + '</span><i style="width:' + Math.round(r[1] / max * 60) + '%"></i><b>' + r[1] + '</b></div>'; }).join('');
+  }
+  function grafiek(el, a, b) {
+    var W = 860, H = 200, P = 26, max = Math.max(1, Math.max.apply(null, a)), bw = (W - P) / a.length;
+    var s = '<svg viewBox="0 0 ' + W + ' ' + (H + 22) + '" role="img" aria-label="Bezoeken per dag">';
+    s += '<text x="0" y="12" font-size="11" fill="currentColor" opacity=".6">' + max + '</text>';
+    a.forEach(function (v, i) {
+      var h = v / max * (H - 20), x = P + i * bw;
+      s += '<rect x="' + (x + 2) + '" y="' + (H - h) + '" width="' + Math.max(2, bw * (b ? .45 : .8) - 2) + '" height="' + h + '" rx="2" fill="var(--accent)"><title>' + dagen[i] + ': ' + v + '</title></rect>';
+      if (b) { var h2 = b[i] / max * (H - 20); s += '<rect x="' + (x + 2 + bw * .45) + '" y="' + (H - h2) + '" width="' + Math.max(2, bw * .45 - 2) + '" height="' + h2 + '" rx="2" fill="var(--accent2)"><title>' + dagen[i] + ': ' + b[i] + ' uniek</title></rect>'; }
+      if (i % 2 === 1 || i === a.length - 1) s += '<text x="' + (x + bw / 2) + '" y="' + (H + 16) + '" font-size="11" text-anchor="middle" fill="currentColor" opacity=".6">' + dagen[i].slice(8) + '-' + dagen[i].slice(5, 7) + '</text>';
+    });
+    el.innerHTML = s + '</svg>';
+  }
+  function n(v, k) { return v[k] || 0; }
+  veel(keys, function (v, klaar) {
+    document.getElementById('totalen').innerHTML =
+      kaart(n(v, 'www-hits'), 'bezoeken site') + kaart(n(v, 'www-uniek'), 'unieke bezoekers site') +
+      kaart(n(v, 'beta-hits'), 'bezoeken beta') + kaart(n(v, 'beta-uniek'), 'unieke bezoekers beta') +
+      kaart(n(v, 'beta-code'), 'uitnodigingslink gebruikt') + kaart(n(v, 'beta-gids'), 'installatiegids geopend');
+    grafiek(document.getElementById('grafiek'), dagen.map(function (x) { return n(v, 'www-d-' + x); }), dagen.map(function (x) { return n(v, 'www-ud-' + x); }));
+    grafiek(document.getElementById('grafiek-beta'), dagen.map(function (x) { return n(v, 'beta-d-' + x); }));
+    balken(document.getElementById('bron'), bronnen.map(function (b) { return [b, n(v, 'www-s-' + b) + n(v, 'beta-s-' + b)]; }));
+    balken(document.getElementById('taal'), talen.map(function (t) { return [t.toUpperCase(), n(v, 'www-l-' + t) + n(v, 'beta-l-' + t)]; }));
+    document.getElementById('stand').textContent = klaar
+      ? 'Stand van ' + new Date().toLocaleString('nl-NL') + ' · ververs de pagina voor nieuwe cijfers'
+      : 'Cijfers laden… ' + Object.keys(v).length + ' van ' + keys.length;
+  });
+  var uitEl = document.getElementById('uitstand'), knop = document.getElementById('uit');
+  function toon() {
+    var u = false; try { u = localStorage.getItem('hc-notrack') === '1'; } catch (e) {}
+    uitEl.textContent = u ? 'Dit apparaat wordt niet meegeteld.' : 'Dit apparaat telt nu mee.';
+    knop.textContent = u ? 'Weer meetellen' : 'Dit apparaat niet meetellen';
+  }
+  knop.addEventListener('click', function () {
+    try { if (localStorage.getItem('hc-notrack') === '1') localStorage.removeItem('hc-notrack'); else localStorage.setItem('hc-notrack', '1'); } catch (e) {}
+    toon();
+  });
+  toon();
+})();
+</script>
+</body>
+</html>
