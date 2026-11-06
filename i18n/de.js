@@ -50,7 +50,7 @@
   'k3.tekst': 'Deutsch, Englisch, Niederländisch, Französisch, Spanisch, Chinesisch und Hindi. Jeder Text, in jedem Editor.',
   'k4.titel': 'Privat: Alles bleibt zu Hause',
   'k4.tekst': 'Dein Haus, deine Lampen und deine Einstellungen liegen in deinem eigenen Home Assistant. Kein Konto, keine Cloud, es wird nichts verschickt.',
-  'alt.instellingen': 'Die Einstellungen von HomeCraft: Panel-ID dieses Bildschirms, Räume und Bereiche, Berechtigungen und Sicherung.',
+  'alt.instellingen': 'Die Einstellungen von HomeCraft: Anzeige, Kamera, Wetter und Licht, Geräte, Tablet und Kiosk, Benutzer und Berechtigungen, Haus und Sicherung.',
   'alt.reparatie': 'Ein Reparaturhinweis von HomeCraft in Home Assistant zu verknüpften Entitäten, die es nicht mehr gibt.',
   'thuis.oog': 'Zu Hause in Home Assistant',
   'thuis.titel': 'Fühlt sich an wie ein Teil von Home Assistant',

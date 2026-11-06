@@ -83,7 +83,7 @@
   'alt.huis': 'Een huis in 3D van schuin boven, met labels voor eetkamer, woonkamer, bijkeuken en de kamers boven.',
   'alt.kamer': 'De woonkamer en keuken van dichtbij in 3D, met meubels, lampen die aan zijn en de oprit ernaast.',
   'alt.verdieping': 'De begane grond recht van boven: eettafel, keuken, trap en woonkamer, met de lampen die aan zijn.',
-  'alt.instellingen': 'De instellingen van HomeCraft: paneelnaam van het scherm, ruimtes en gebieden, rechten en back-up.',
+  'alt.instellingen': 'De instellingen van HomeCraft: weergave, camera, weer en licht, apparaten, tablet en kiosk, gebruikers en rechten, huis en back-up.',
   'alt.reparatie': 'Een reparatiemelding van HomeCraft in Home Assistant over gekoppelde entiteiten die niet meer bestaan.',
   'merk.aria': 'HomeCraft, naar het begin',
   'nav.aria': 'Hoofdmenu',

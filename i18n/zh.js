@@ -50,7 +50,7 @@
   'k3.tekst': '中文、英语、荷兰语、德语、法语、西班牙语和印地语。每一段文字，每一个编辑器。',
   'k4.titel': '隐私：一切都留在家里',
   'k4.tekst': '你的房子、灯具和设置都保存在你自己的 Home Assistant 中。无需账户，没有云端，不发送任何数据。',
-  'alt.instellingen': 'HomeCraft 的设置：此屏幕的面板 ID、房间和区域、权限以及备份。',
+  'alt.instellingen': 'HomeCraft 的设置：显示、相机、天气与光照、设备、平板与展示模式、用户与权限、房屋与备份。',
   'alt.reparatie': 'Home Assistant 中一条来自 HomeCraft 的修复提示，内容是已关联但不再存在的实体。',
   'thuis.oog': '与 Home Assistant 融为一体',
   'thuis.titel': '就像 Home Assistant 原生的一部分',

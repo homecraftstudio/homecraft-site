@@ -50,7 +50,7 @@
   'k3.tekst': 'Français, anglais, néerlandais, allemand, espagnol, chinois et hindi. Chaque texte, dans chaque éditeur.',
   'k4.titel': 'Privé : tout reste chez vous',
   'k4.tekst': 'Votre maison, vos lampes et vos réglages restent dans votre propre Home Assistant. Pas de compte, pas de cloud, rien n’est envoyé.',
-  'alt.instellingen': 'Les paramètres de HomeCraft : ID de panneau de cet écran, pièces, droits d’accès et sauvegarde.',
+  'alt.instellingen': 'Les paramètres de HomeCraft : affichage, caméra, météo et lumière, appareils, tablette et kiosque, utilisateurs et droits, maison et sauvegarde.',
   'alt.reparatie': 'Une alerte de réparation de HomeCraft dans Home Assistant concernant des entités liées qui n’existent plus.',
   'thuis.oog': 'Chez soi dans Home Assistant',
   'thuis.titel': 'Comme une partie de Home Assistant',
