@@ -10,8 +10,8 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="/style.css">
-<script>/* Vroege taalkeuze (zie i18n.js): ?lang=xx of de eerder gekozen taal; laadt de vertaling al tijdens het opbouwen. */
-(function(d){var h=d.documentElement,t=null;h.classList.add('js');try{t=new URLSearchParams(location.search).get('lang')}catch(e){}if(!t){try{t=localStorage.getItem('hc-taal')}catch(e){}}t=String(t||'').toLowerCase().slice(0,2);if(/^(nl|de|fr|es|zh|hi)$/.test(t)){h.lang=t==='zh'?'zh-Hans':t;h.classList.add('hc-vertaal');var s=d.createElement('script');s.src='/i18n/'+t+'.js';s.id='hc-taal-'+t;d.head.appendChild(s);setTimeout(function(){h.classList.remove('hc-vertaal')},3000)}})(document);</script>
+<script>/* Vroege taalkeuze (zie i18n.js): ?lang=xx, de eerder gekozen taal of de browsertaal; laadt de vertaling al tijdens het opbouwen. */
+(function(d){var h=d.documentElement,t=null;h.classList.add('js');try{t=new URLSearchParams(location.search).get('lang')}catch(e){}if(!t){try{t=localStorage.getItem('hc-taal')}catch(e){}}if(!t){try{var L=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language];for(var i=0;i<L.length;i++){var c=String(L[i]||'').toLowerCase().slice(0,2);if(/^(en|nl|de|fr|es|zh|hi)$/.test(c)){t=c;break}}}catch(e){}}t=String(t||'').toLowerCase().slice(0,2);if(/^(nl|de|fr|es|zh|hi)$/.test(t)){h.lang=t==='zh'?'zh-Hans':t;h.classList.add('hc-vertaal');var s=d.createElement('script');s.src='/i18n/'+t+'.js';s.id='hc-taal-'+t;d.head.appendChild(s);setTimeout(function(){h.classList.remove('hc-vertaal')},3000)}})(document);</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">

@@ -1,7 +1,7 @@
 /* Taalkeuze in 7 talen: en, nl, de, fr, es, zh (vereenvoudigd Chinees) en hi (Hindi).
    Engels staat in de HTML. De andere talen staan in /i18n/<taal>.js en worden pas geladen als ze nodig zijn.
-   Keuze: ?lang=xx, anders de eerder gekozen taal (localStorage), anders Engels.
-   Er wordt bewust niet op de browsertaal gekozen: de pagina opent in het Engels tot iemand zelf kiest.
+   Keuze: ?lang=xx, anders de eerder gekozen taal (localStorage), anders de taal van de browser (de eerste uit
+   navigator.languages die we hebben), anders Engels. Geen locatie: de browsertaal is wat de bezoeker zelf instelde.
    Het vroege script in <head> start het laden van de vertaling al tijdens het opbouwen; dit bestand zet hem neer. */
 (function () {
   var TALEN = ['en', 'nl', 'de', 'fr', 'es', 'zh', 'hi'];
@@ -192,7 +192,13 @@
   /* ---- Start ---- */
   var uitAdres = null;
   try { uitAdres = geldig(new URLSearchParams(location.search).get('lang')); } catch (e) { /* geen URLSearchParams */ }
-  var start = uitAdres || geldig(lees()) || 'en';
+  function browserTaal() {
+    var lijst = [];
+    try { lijst = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language]) || []; } catch (e) { /* geen navigator */ }
+    for (var i = 0; i < lijst.length; i++) { var t = geldig(lijst[i]); if (t) return t; }
+    return null;
+  }
+  var start = uitAdres || geldig(lees()) || browserTaal() || 'en';
   if (uitAdres) canoniek(uitAdres);
   if (start !== 'en') kies(start);
   else { document.documentElement.classList.remove('hc-vertaal'); kiezerBij(); beelden('en'); }
