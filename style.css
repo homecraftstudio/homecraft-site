@@ -232,3 +232,7 @@ section { padding: 96px 0; }
 .los h1 { font-size: clamp(36px, 6vw, 60px); }
 .los p { color: var(--zacht); font-size: 19px; margin: 16px auto 28px; max-width: 520px; }
 .los .acties { justify-content: center; }
+
+/* Live demo button under the beta status (hero) */
+.demo-blok { margin-top: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.slot-vlak .knop { margin-top: 18px; }
