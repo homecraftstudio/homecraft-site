@@ -3,7 +3,7 @@
 (function () {
   var NS = 'hcs-k7q2m9';
   var API = 'https://abacus.jasoncameron.dev';
-  var SITES = [['www', 'homecraft.studio'], ['beta', 'beta.homecraft.studio']];
+  var SITES = [['www', 'homecraft.studio'], ['beta', 'beta.homecraft.studio'], ['demo', 'demo.homecraft.studio']];
   var TALEN = [['en', 'English'], ['nl', 'Nederlands'], ['de', 'Deutsch'], ['fr', 'Français'], ['es', 'Español'], ['zh', '中文'], ['hi', 'हिन्दी']];
   var BRONNEN = [['direct', 'Direct'], ['google', 'Google'], ['facebook', 'Facebook'], ['github', 'GitHub'], ['overig', 'Overig']];
   var DAGEN = 30;
