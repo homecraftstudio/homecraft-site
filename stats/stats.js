@@ -221,7 +221,26 @@
       : 'Dit apparaat wordt meegeteld.';
   }
   $('notrack').addEventListener('click', function () { zet('hc-notrack', lees('hc-notrack') === '1' ? null : '1'); notrackBij(); });
+  /* Eerst de stand die een GitHub Action elke 15 minuten opslaat (tak stats-data): meteen cijfers, zonder de
+     honderden losse verzoeken. Lukt dat niet (of bij een testnamespace), dan live laden zoals voorheen. */
+  var STAND = 'https://raw.githubusercontent.com/homecraftstudio/homecraft-site/stats-data/data.json';
+  function laadStand() {
+    if (ns !== NS) { laad(); return; }
+    $('status').textContent = 'Laden…';
+    fetch(STAND + '?t=' + Math.floor(Date.now() / 60000), { cache: 'no-store', credentials: 'omit', referrerPolicy: 'no-referrer' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.data || !j.tijd) { laad(); return; }
+        var dd = dagen(), vandaag = dd[dd.length - 1];
+        var data = j.data;
+        dd.forEach(function (d) { SITES.forEach(function (s) { var x = s[0] + '-d-' + d; if (d < START && !(x in data)) data[x] = 0; }); });
+        teken(data, dd, vandaag, false);
+        var t = new Date(j.tijd);
+        $('status').textContent = 'Stand van ' + ('0' + t.getHours()).slice(-2) + ':' + ('0' + t.getMinutes()).slice(-2) +
+          ' (elke 15 minuten bijgewerkt). Vernieuwen haalt de live cijfers op.';
+      }, laad);
+  }
   $('vernieuw').addEventListener('click', laad);
   notrackBij();
-  laad();
+  laadStand();
 })();
